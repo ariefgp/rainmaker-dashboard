@@ -19,7 +19,6 @@ const Dashboard = () => {
     }, [isAuthenticated, router]);
 
     const fetchStats = async () => {
-        // Replace these URLs with your actual API endpoints
         const usersResponse = await axios.get('/api/users/count');
         const filesResponse = await axios.get('/api/files/count');
         setUserCount(usersResponse.data.count);
