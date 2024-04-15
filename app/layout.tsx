@@ -18,8 +18,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <AuthProvider>
+    <AuthProvider>
+      <html lang="en">
         <body className={inter.className}>
           <div className="flex h-screen bg-gray-100">
             <Sidebar />
@@ -31,7 +31,7 @@ export default function RootLayout({
             </div>
           </div>
         </body>
-      </AuthProvider>
-    </html>
+      </html>
+    </AuthProvider>
   );
 }
