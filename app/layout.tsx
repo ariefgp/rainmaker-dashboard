@@ -19,21 +19,27 @@ interface RootLayoutProps {
 
 export default function RootLayout({
   children,
-  showNav = true 
+  showNav = true
 }: RootLayoutProps) {
   return (
     <AuthProvider>
       <html lang="en">
         <body className={inter.className}>
-          <div className="flex h-screen bg-gray-100">
-            {showNav && <Sidebar />}
-            <div className="flex flex-col flex-grow">
-              {showNav && <TopBar />}
-              <main className="flex-grow p-4">
-                {children}
-              </main>
+          {showNav ? (
+            <div className="flex h-screen bg-gray-100">
+              <Sidebar />
+              <div className="flex flex-col flex-grow">
+                <TopBar />
+                <main className="flex-grow p-4">
+                  {children}
+                </main>
+              </div>
             </div>
-          </div>
+          ) : (
+            <div>
+              {children}
+            </div>
+          )}
         </body>
       </html>
     </AuthProvider>
