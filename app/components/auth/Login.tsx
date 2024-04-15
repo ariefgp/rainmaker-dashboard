@@ -1,17 +1,26 @@
 'use client'
 import { useState } from 'react';
-import axios from 'axios'; 
+import axios from 'axios';
+import { useRouter } from 'next/router';
+import { useAuth } from './AuthContext';
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const { login } = useAuth();
+    const router = useRouter();
 
     const handleLogin = async () => {
         try {
             const response = await axios.post('/api/login', { email, password });
             console.log('Logged in successfully:', response.data);
-            // You might want to store the token in local storage and redirect to the dashboard here
+            if (response.data.token) {
+                login(response.data);
+                router.push('/dashboard');
+            } else {
+                setError('No token received');
+            }
         } catch (error) {
             setError('Failed to login');
             console.error('Login error:', error);
