@@ -1,9 +1,9 @@
 import SignUp from '../components/auth/SignUp';
-import RootLayout from '../layout';
+import Body from '../body';
 
 const SignUpPage = () => {
     return (
-        <RootLayout showNav={false}>
+        <Body showNav={false}>
             <div className="flex justify-center items-center h-screen">
                 <div className="card w-96 bg-base-100 shadow-xl">
                     <div className="card-body">
@@ -12,7 +12,7 @@ const SignUpPage = () => {
                     </div>
                 </div>
             </div>
-        </RootLayout>
+        </Body>
     );
 };
 

@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { AuthProvider } from "./components/auth/AuthContext";
-import TopBar from "./components/topbar/Topbar";
-import Sidebar from "./components/sidebar/Sidebar";
+import Body from "./body";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -14,34 +13,18 @@ export const metadata: Metadata = {
 
 interface RootLayoutProps {
   children: React.ReactNode;
-  showNav?: boolean;
 }
 
 export default function RootLayout({
   children,
-  showNav = true
 }: RootLayoutProps) {
   return (
-    <AuthProvider>
-      <html lang="en">
-        <body className={inter.className}>
-          {showNav ? (
-            <div className="flex h-screen bg-gray-100">
-              <Sidebar />
-              <div className="flex flex-col flex-grow">
-                <TopBar />
-                <main className="flex-grow p-4">
-                  {children}
-                </main>
-              </div>
-            </div>
-          ) : (
-            <div>
-              {children}
-            </div>
-          )}
-        </body>
-      </html>
-    </AuthProvider>
+    <html lang="en">
+      <body className={inter.className}>
+        <AuthProvider>
+          <Body>{children}</Body>
+        </AuthProvider>
+      </body>
+    </html>
   );
 }
